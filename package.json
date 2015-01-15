@@ -1,0 +1,19 @@
+{
+  "name": "Pbf_Vector_Tile_Server_Test",
+  "version": "1.0.0",
+  "description": "An experiment in serving PBF vector tiles",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.11.0",
+    "mbtiles": "^0.7.7",
+    "tilelive": "^5.5.0",
+    "tilelive-tmsource": "^0.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "alukach",
+  "license": "ISC"
+}

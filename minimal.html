@@ -1,0 +1,26 @@
+<!DOCTYPE html >
+<html>
+  <head>
+    <meta charset='UTF-8'/>
+    <title>Mapbox GL JS rendering my own tiles</title>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.4.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.4.0/mapbox-gl.js'></script>
+    <style>
+      body { margin:0; padding:0 }
+      #map { position:absolute; top:0; bottom:50px; width:100%; }
+    </style>
+  </head>
+  <body>
+    <div id='map'>
+    </div>
+    <script src='./account.js'></script>
+    <script>
+      var map = new mapboxgl.Map({
+        container: 'map',
+        center: [46.6957, -124.0082],
+        zoom: 14,
+        style: 'minimal.json'
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+{
+  "version": 6,
+  "constants": {
+    "@water": "#88aacc",
+    "@water_dark": "#185869",
+    "@land": "rgb(244,239,225)"
+  },
+  "sources": {
+    "s57": {
+      "type": "vector",
+      "tiles": [
+        "http://localhost:7777/v2/tiles/{z}/{x}/{y}.pbf"
+      ],
+      "minzoom": 0,
+      "maxzoom": 12
+    },
+    "mapbox": {
+      "type": "vector",
+      "url": "mapbox://mapbox.mapbox-terrain-v1,mapbox.mapbox-streets-v6-dev"
+    }
+  },
+  "sprite": "https://www.mapbox.com/mapbox-gl-styles/sprites/sprite",
+  "glyphs": "mapbox://fontstack/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "@land"
+      }
+    },
+    {
+      "id": "landuse",
+      "type": "fill",
+      "source": "mapbox",
+      "source-layer": "landuse_overlay",
+      "paint": {
+        "fill-color": "@land"
+      }
+    },
+    {
+      "id": "water",
+      "source": "mapbox",
+      "source-layer": "water",
+      "type": "fill",
+      "paint": {
+        "fill-color": "@water",
+        "fill-outline-color": "@water_dark"
+      }
+    },
+    {
+      "id": "soundings",
+      "type": "symbol",
+      "source": "s57",
+      "source-layer": "soundings",
+      "layout": {
+        "text-field": "{valsou}",
+        "text-max-size": 20,
+        "text-max-width": 6
+      },
+      "paint": {
+        "text-color": "#fff",
+        "text-halo-color": "#f00",
+        "text-halo-width": 1,
+        "text-halo-blur": 1
+      }
+    }
+  ]
+}
