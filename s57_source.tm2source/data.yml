@@ -1,18 +1,45 @@
-_prefs:
-  disabled: []
+_prefs: 
+  disabled: 
+    - soundings
+    - contours
+    - coastlines
+    - shipwrecks
+    - ocean
   inspector: false
   mapid: alukach.7c461f70
   rev: s-22c55f62
   saveCenter: true
 attribution: ''
-center:
-  - -123.9759
-  - 46.5582
-  - 6
+center: 
+  - -10.1074
+  - -6.8828
+  - 4
 description: ''
-Layer:
-  - id: soundings
-    Datasource:
+Layer: 
+  - id: land
+    Datasource: 
+      file: /Users/anthony/Downloads/ne_10m_land/ne_10m_land.shp
+      type: shape
+    description: "ne_10m_land c/o http://www.naturalearthdata.com/downloads/10m-physical-vectors/"
+    fields: 
+      featurecla: String
+      scalerank: Number
+    properties: 
+      "buffer-size": 8
+    srs: +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs
+  - id: ocean
+    Datasource: 
+      file: /Users/anthony/Downloads/ne_10m_ocean/ne_10m_ocean.shp
+      type: shape
+    description: "ne_10m_ocean, c/o http://www.naturalearthdata.com/downloads/10m-physical-vectors/"
+    fields: 
+      featurecla: String
+      scalerank: Number
+    properties: 
+      "buffer-size": 8
+    srs: +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs
+  - id: shipwrecks
+    Datasource: 
       dbname: enc
       extent: -180,-85.0511,180,85.0511
       geometry_field: ''
@@ -24,7 +51,123 @@ Layer:
       port: ''
       table: |-
         (
-          SELECT
+          SELECT 
+            expsou,
+          	objnam,
+          	quasou,
+          	watlev,
+          	inform,
+          	scamin,
+          	scamax,
+          	sordat,
+          	sorind,
+            wkb_geometry
+          FROM wrecks
+        ) as data
+      type: postgis
+      user: ''
+    description: ''
+    fields: 
+      expsou: Number
+      inform: String
+      objnam: String
+      quasou: String
+      scamax: Number
+      scamin: Number
+      sordat: String
+      sorind: String
+      watlev: Number
+    properties: 
+      "buffer-size": 8
+    srs: +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs
+  - id: coastlines
+    Datasource: 
+      dbname: enc
+      extent: -180,-85.0511,180,85.0511
+      geometry_field: ''
+      geometry_table: ''
+      host: ''
+      key_field: ''
+      max_size: 512
+      password: ''
+      port: ''
+      table: |-
+        (
+          SELECT 
+            objnam,
+          	inform,
+          	scamin,
+          	scamax,
+          	sordat,
+          	sorind,
+            wkb_geometry
+          FROM coalne
+        ) as data
+      type: postgis
+      user: ''
+    description: ''
+    fields: 
+      inform: String
+      objnam: String
+      scamax: Number
+      scamin: Number
+      sordat: String
+      sorind: String
+    properties: 
+      "buffer-size": 8
+    srs: +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs
+  - id: contours
+    Datasource: 
+      dbname: enc
+      extent: -180,-85.0511,180,85.0511
+      geometry_field: ''
+      geometry_table: ''
+      host: ''
+      key_field: ''
+      max_size: 512
+      password: ''
+      port: ''
+      table: |-
+        (
+          SELECT 
+            valdco,
+          	verdat,
+          	inform,
+          	scamin,
+          	scamax,
+          	sordat,
+          	sorind,
+            wkb_geometry
+          FROM depcnt
+        ) as data
+      type: postgis
+      user: ''
+    description: ''
+    fields: 
+      inform: String
+      scamax: Number
+      scamin: Number
+      sordat: String
+      sorind: String
+      valdco: Number
+      verdat: Number
+    properties: 
+      "buffer-size": 8
+    srs: +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs
+  - id: soundings
+    Datasource: 
+      dbname: enc
+      extent: -180,-85.0511,180,85.0511
+      geometry_field: ''
+      geometry_table: ''
+      host: ''
+      key_field: ''
+      max_size: 512
+      password: ''
+      port: ''
+      table: |-
+        (
+          SELECT 
             depth as valsou,
             scamin,
             scamax,
@@ -35,16 +178,16 @@ Layer:
         ) as data
       type: postgis
       user: ''
-    description: S57
-    fields:
+    description: Soundings Data
+    fields: 
       scamax: Maximum scale for display.
       scamin: Minimum scale for display.
       sordat: The production date of the source, e.g. the date of measurement.
       sorind: Information about the source of the object.
       valsou: The value of the measurement of a sounding relative to the chart datum.
-    properties:
+    properties: 
       "buffer-size": 8
     srs: +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs
-maxzoom: 6
+maxzoom: 7
 minzoom: 0
 name: S57 Data
