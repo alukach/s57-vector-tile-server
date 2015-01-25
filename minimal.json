@@ -60,9 +60,9 @@
       },
       "paint": {
         "text-color": "#fff",
-        "text-halo-color": "#f00",
-        "text-halo-width": 1,
-        "text-halo-blur": 1
+        "text-halo-color": "#666",
+        "text-halo-width": 0.25,
+        "text-halo-blur": 0.75
       }
     }
   ]
