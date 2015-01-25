@@ -28,6 +28,21 @@ About the options:
        to get 2.5D versions.
     ```
 
+    ``` bash
+    export OGR_S57_OPTIONS="RETURN_PRIMITIVES=ON,RETURN_LINKAGES=ON,LNAM_REFS=ON,SPLIT_MULTIPOINT=ON,ADD_SOUNDG_DEPTH=ON"
+    find . -name "US*.000" -exec ogr2ogr -append -nlt POINT25D -f PostgreSQL PG:"dbname=s57 user=anthony" {} SOUNDG \;
+    ```
+
+    ``` bash
+    export OGR_S57_OPTIONS="RETURN_PRIMITIVES=ON,RETURN_LINKAGES=ON,LNAM_REFS=ON,SPLIT_MULTIPOINT=ON,ADD_SOUNDG_DEPTH=ON"
+    ogr2ogr -append -f PostgreSQL PG:"dbname=s57_2 user=anthony" US1HA02M.000 -skipfailures \;
+
+    ```
+
+    ``` bash
+    export OGR_S57_OPTIONS="RETURN_PRIMITIVES=ON,RETURN_LINKAGES=ON,LNAM_REFS=ON,SPLIT_MULTIPOINT=ON,ADD_SOUNDG_DEPTH=ON"
+    find . -name "US*.000" -exec ogr2ogr -append -f PostgreSQL PG:"dbname=enc user=anthony" {} -skipfailures \;
+    ```
 
 ### Visualization
 
