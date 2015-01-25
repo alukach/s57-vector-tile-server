@@ -1,14 +1,29 @@
 # PBF Vector Tile Test
 
-Based off of http://gis.stackexchange.com/questions/125037/self-hosting-mapbox-vector-tiles
+This is a collection of notes taken during the process of experimenting with MapboxGL and PBF Vector Tiles.
+
+## Links
+
+* Serving Tiles
+  * [Stack Exchange: Hosting Mapbox Vector Tiles](http://gis.stackexchange.com/questions/125037/self-hosting-mapbox-vector-tiles)
+* MapboxGL General
+  * [JustinMiller: Anatomy of a travel map](http://justinmiller.io/posts/2015/01/20/anatomy-of-a-travel-map/)
+  * [Igor Tihonov: Taking mapbox-gl.js for a spin](http://igortihonov.com/2014/10/21/taking-mapbox-gl-for-a-spin/)
 
 ## Steps
 
 ### Data
 
-1. Working with S-57: [Processing S57 soundings](http://blog.perrygeo.net/2005/12/03/hello-world/), [GDAL Driver (section about soundings especially important)](http://www.gdal.org/drv_s57.html)
+At it's core, it's about data. You'll need to be able to understand the data that you have and import it into your data store (ie PostGIS).
+
+Links
+* [Processing S57 soundings](http://blog.perrygeo.net/2005/12/03/hello-world/)
+* [GDAL S57 Driver](http://www.gdal.org/drv_s57.html) (section about soundings especially important)
+
+
 1. Import the data:
 
+    Below is an example of importing only the `SOUNDG` layer (soundings) of a single S57 file.
     ``` bash
     export OGR_S57_OPTIONS="RETURN_PRIMITIVES=ON,RETURN_LINKAGES=ON,LNAM_REFS=ON,SPLIT_MULTIPOINT=ON,ADD_SOUNDG_DEPTH=ON"
     ogr2ogr \
@@ -27,20 +42,22 @@ About the options:
        POLYGON, GEOMETRYCOLLECTION, MULTIPOINT, MULTIPOLYGON or MULTILINESTRING. Add '25D' to the name
        to get 2.5D versions.
     ```
-
+    Below is an example of iterating through a collection of files and importing just the `SOUNDG` layers.
     ``` bash
     export OGR_S57_OPTIONS="RETURN_PRIMITIVES=ON,RETURN_LINKAGES=ON,LNAM_REFS=ON,SPLIT_MULTIPOINT=ON,ADD_SOUNDG_DEPTH=ON"
+
     find . -name "US*.000" -exec ogr2ogr -append -nlt POINT25D -f PostgreSQL PG:"dbname=s57 user=anthony" {} SOUNDG \;
     ```
-
+    Below is an example of importing an entire S57 file.
     ``` bash
     export OGR_S57_OPTIONS="RETURN_PRIMITIVES=ON,RETURN_LINKAGES=ON,LNAM_REFS=ON,SPLIT_MULTIPOINT=ON,ADD_SOUNDG_DEPTH=ON"
+
     ogr2ogr -append -f PostgreSQL PG:"dbname=s57_2 user=anthony" US1HA02M.000 -skipfailures \;
-
     ```
-
+    Tying it all together, below is an example of searching recursively through a collection of S57 files and importing all layers into PostGIS.
     ``` bash
     export OGR_S57_OPTIONS="RETURN_PRIMITIVES=ON,RETURN_LINKAGES=ON,LNAM_REFS=ON,SPLIT_MULTIPOINT=ON,ADD_SOUNDG_DEPTH=ON"
+
     find . -name "US*.000" -exec ogr2ogr -append -f PostgreSQL PG:"dbname=enc user=anthony" {} -skipfailures \;
     ```
 
