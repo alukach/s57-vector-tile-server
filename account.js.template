@@ -1,0 +1,2 @@
+// https://www.mapbox.com/account/apps/
+mapboxgl.accessToken = 'pk.{your_mapboxgl_access_token}';
