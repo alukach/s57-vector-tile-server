@@ -1,6 +1,6 @@
-# PBF Vector Tile Test
+# MapboxGL Ocean Map
 
-This is a collection of notes taken during the process of experimenting with MapboxGL and PBF Vector Tiles.
+This is a collection of notes taken during the process of experimenting with MapboxGL, PBF Vector Tiles, and ENC data from NOAA.
 
 ## Links
 
