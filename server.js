@@ -5,7 +5,7 @@ var tilelive = require('tilelive');
 require('mbtiles').registerProtocols(tilelive);
 require('tilelive-tmsource')(tilelive);
 
-tilelive.load('tmsource:///Users/anthony/Projects/mapbox/s57_source.tm2source', function(err, source) {
+tilelive.load('tmsource://./s57_source.tm2source', function(err, source) {
 
     if (err) {
         throw err;

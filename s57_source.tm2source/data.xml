@@ -15,9 +15,9 @@
 <Layer name="soundings"
   buffer-size="8"
   srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs">
-    
+
     <Datasource>
-       <Parameter name="dbname"><![CDATA[s57]]></Parameter>
+       <Parameter name="dbname"><![CDATA[enc]]></Parameter>
        <Parameter name="extent"><![CDATA[-180,-85.0511,180,85.0511]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_table"><![CDATA[]]></Parameter>
@@ -27,7 +27,7 @@
        <Parameter name="password"><![CDATA[]]></Parameter>
        <Parameter name="port"><![CDATA[]]></Parameter>
        <Parameter name="table"><![CDATA[(
-  SELECT 
+  SELECT
     depth as valsou,
     scamin,
     scamax,

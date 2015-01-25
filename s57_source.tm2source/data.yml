@@ -1,19 +1,19 @@
-_prefs: 
+_prefs:
   disabled: []
   inspector: false
   mapid: alukach.7c461f70
   rev: s-22c55f62
   saveCenter: true
 attribution: ''
-center: 
+center:
   - -123.9759
   - 46.5582
   - 6
 description: ''
-Layer: 
+Layer:
   - id: soundings
-    Datasource: 
-      dbname: s57
+    Datasource:
+      dbname: enc
       extent: -180,-85.0511,180,85.0511
       geometry_field: ''
       geometry_table: ''
@@ -24,7 +24,7 @@ Layer:
       port: ''
       table: |-
         (
-          SELECT 
+          SELECT
             depth as valsou,
             scamin,
             scamax,
@@ -36,13 +36,13 @@ Layer:
       type: postgis
       user: ''
     description: S57
-    fields: 
+    fields:
       scamax: Maximum scale for display.
       scamin: Minimum scale for display.
       sordat: The production date of the source, e.g. the date of measurement.
       sorind: Information about the source of the object.
       valsou: The value of the measurement of a sounding relative to the chart datum.
-    properties: 
+    properties:
       "buffer-size": 8
     srs: +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs
 maxzoom: 6
