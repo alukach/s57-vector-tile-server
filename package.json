@@ -1,5 +1,5 @@
 {
-  "name": "Pbf_Vector_Tile_Server_Test",
+  "name": "mapbox-gl-ocean-map-experiment",
   "version": "1.0.0",
   "description": "An experiment in serving PBF vector tiles",
   "main": "server.js",
