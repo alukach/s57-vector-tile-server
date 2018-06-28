@@ -34,32 +34,32 @@ Links
     ```
 About the options:
 
-    ``` bash
-    -update  # Open existing output datasource in update mode rather than trying to create a new one
-    -append  # Append to existing layer instead of creating new
-    -nlt type:
-       Define the geometry type for the created layer. One of NONE, GEOMETRY, POINT, LINESTRING,
-       POLYGON, GEOMETRYCOLLECTION, MULTIPOINT, MULTIPOLYGON or MULTILINESTRING. Add '25D' to the name
-       to get 2.5D versions.
-    ```
-    Below is an example of iterating through a collection of files and importing just the `SOUNDG` layers.
-    ``` bash
-    export OGR_S57_OPTIONS="RETURN_PRIMITIVES=ON,RETURN_LINKAGES=ON,LNAM_REFS=ON,SPLIT_MULTIPOINT=ON,ADD_SOUNDG_DEPTH=ON"
+``` bash
+-update  # Open existing output datasource in update mode rather than trying to create a new one
+-append  # Append to existing layer instead of creating new
+-nlt type:
+   Define the geometry type for the created layer. One of NONE, GEOMETRY, POINT, LINESTRING,
+   POLYGON, GEOMETRYCOLLECTION, MULTIPOINT, MULTIPOLYGON or MULTILINESTRING. Add '25D' to the name
+   to get 2.5D versions.
+```
+Below is an example of iterating through a collection of files and importing just the `SOUNDG` layers.
+``` bash
+export OGR_S57_OPTIONS="RETURN_PRIMITIVES=ON,RETURN_LINKAGES=ON,LNAM_REFS=ON,SPLIT_MULTIPOINT=ON,ADD_SOUNDG_DEPTH=ON"
 
-    find . -name "US*.000" -exec ogr2ogr -append -nlt POINT25D -f PostgreSQL PG:"dbname=s57 user=anthony" {} SOUNDG \;
-    ```
-    Below is an example of importing an entire S57 file.
-    ``` bash
-    export OGR_S57_OPTIONS="RETURN_PRIMITIVES=ON,RETURN_LINKAGES=ON,LNAM_REFS=ON,SPLIT_MULTIPOINT=ON,ADD_SOUNDG_DEPTH=ON"
+find . -name "US*.000" -exec ogr2ogr -append -nlt POINT25D -f PostgreSQL PG:"dbname=s57 user=anthony" {} SOUNDG \;
+```
+Below is an example of importing an entire S57 file.
+``` bash
+export OGR_S57_OPTIONS="RETURN_PRIMITIVES=ON,RETURN_LINKAGES=ON,LNAM_REFS=ON,SPLIT_MULTIPOINT=ON,ADD_SOUNDG_DEPTH=ON"
 
-    ogr2ogr -append -f PostgreSQL PG:"dbname=s57_2 user=anthony" US1HA02M.000 -skipfailures \;
-    ```
-    Tying it all together, below is an example of searching recursively through a collection of S57 files and importing all layers into PostGIS.
-    ``` bash
-    export OGR_S57_OPTIONS="RETURN_PRIMITIVES=ON,RETURN_LINKAGES=ON,LNAM_REFS=ON,SPLIT_MULTIPOINT=ON,ADD_SOUNDG_DEPTH=ON"
+ogr2ogr -append -f PostgreSQL PG:"dbname=s57_2 user=anthony" US1HA02M.000 -skipfailures \;
+```
+Tying it all together, below is an example of searching recursively through a collection of S57 files and importing all layers into PostGIS.
+``` bash
+export OGR_S57_OPTIONS="RETURN_PRIMITIVES=ON,RETURN_LINKAGES=ON,LNAM_REFS=ON,SPLIT_MULTIPOINT=ON,ADD_SOUNDG_DEPTH=ON"
 
-    find . -name "US*.000" -exec ogr2ogr -append -f PostgreSQL PG:"dbname=enc user=anthony" {} -skipfailures \;
-    ```
+find . -name "US*.000" -exec ogr2ogr -append -f PostgreSQL PG:"dbname=enc user=anthony" {} -skipfailures \;
+```
 
 ### Visualization
 
